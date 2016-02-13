@@ -1,8 +1,10 @@
 # stop-point
-emacs library for the _stop-point_ method. Useful when you have to type many parenthesis (), {] etc. 
+emacs library for the _stop-point_ method. Useful when you have to type many parenthesis (), {} etc. 
 or for LaTeX $$-like constructions.
 
 ## Overview
+
+The principle is the following:
 
 * any string can be defined a a _stop-point_. Default is "◀◀"
 
