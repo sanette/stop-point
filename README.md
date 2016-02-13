@@ -1,9 +1,12 @@
 # stop-point
-emacs library for the _stop-point_ method. Useful for LaTeX $$-like constructions.
+emacs library for the _stop-point_ method. Useful when you have to type many parenthesis (), {] etc. 
+or for LaTeX $$-like constructions.
+
+## Overview
 
 * any string can be defined a a _stop-point_. Default is "◀◀"
 
-* when you want to use a $$ construction, bind the key of your choice, and let it insert
+* when you want to use a $$ construction, bind the key of your choice, and when you hit it, it inserts
 "$$◀◀" and the cursor is automatically placed between the two $$.
 Now type your code, for instance $a+b=c$◀◀
 and when you are done, press TAB, then the cursor will jump to the _stop-point_ outside the $$, and the _stop-point_ is deleted.
