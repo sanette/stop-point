@@ -3,11 +3,14 @@
 
 (transient-mark-mode t)
 
-(defconst stop-key (kbd "TAB")
+; TODO use defcustom
+(defvar stop-key (kbd "TAB")
   "This defines the key that will be bound to
 'go-next-stop-point. Note that you can use a key that you already
 use for something else, like TAB, because if there is no
-stop-point, then the original binding wills be invoked."  )
+stop-point, then the original binding wills be invoked. The value
+of this variable can be changed by setting stop-key before
+loading stop.el" )
 
 ;;http://stackoverflow.com/questions/9942675/in-elisp-how-do-i-put-a-function-in-a-variable
 (fset 'stop-key-old-function
@@ -35,15 +38,16 @@ and delete it. If not found,we invoke the old keybinding"
   )
 
 (defun insert-stop (s n)
- "insere la chaine s suivie d'un stop-point, et recule de n
-caracteres (a partir de la fin de la chaine s)"
+"inserts the string s followed by a stop-point, and backward n
+chars (from the end of the string s)"
 (insert  (concat s stop-point))
   (backward-char (+ n (length stop-point)))
   )
 
 (defun region-insert-stop (s n)
-  "Comme insert-stop, sauf que si une region etait selectionnee, elle
-est inseree et le stop est enleve. UTILISE KILL (la region est copiee)"
+"Same as insert-stop, except that if a region was selected, it is
+inserted and the stop-point is removed. THIS USES KILL (the
+region is copied)"
   (if mark-active
       (let ((debut (region-beginning))
 	    (fin (region-end))
@@ -56,42 +60,40 @@ est inseree et le stop est enleve. UTILISE KILL (la region est copiee)"
     (insert-stop s n))
   )
 
-(defun stop-parentheses ()
-  "entoure la region de parentheses, si region il y a. 
-Sinon, insere des parentheses ouvrantes et fermantes, sans rien dedans,
- avec un stop-point."
+(defun stop-parenthesis ()
+"puts parenthesis around the region, if region there
+is. Otherwise, inserts a pair of parenthesis, nothing inside, and
+a stop-point."
   (interactive)
   (region-insert-stop "()" 1)
   )
 
 (defun stop-dollars ()
-  "entoure la region de dollars, si region il y a.
-Sinon, insere deux dollars, sans rien dedans,
-avec un stop-point."
+"puts dollar signs around the region, if region there
+is. Otherwise, inserts two dollar signs and a stop-point"
   (interactive)
   (region-insert-stop "$$" 1)
   )
 
-(defun stop-accolades ()
-  "entoure la region d'accolades, si region il y a.
-Sinon, insere des accolades ouvrantes et fermantes, sans rien dedans,
- avec un stop-point."
+(defun stop-braces ()
+"puts curly braces around the region, if region there is.
+Otherwise, insert a pair of curly braces and a stop-point."
   (interactive)
   (region-insert-stop "{}" 1)
   )
 
-(defun stop-tex-accolades ()
-  "entoure la region d'accolades TeX, si region il y a.
-Sinon, insere des accolades ouvrantes et fermantes \{ et \}, sans rien dedans,
- avec un stop-point."
+(defun stop-tex-braces ()
+"puts TeX xurly braces around the region, if region there
+is. Otherwise, inserts a pair of TeX curly braces \{ and \}, and
+a stop-point."
   (interactive)
   (region-insert-stop "\\{\\}" 2)
   )
 
 (defun stop-tex-mathline ()
-  "entoure la region des délimiteur math \[ et \] LaTeX, si region il y a.
-Sinon, insere \[ et \], une ligne vide dedans,
- avec un stop-point."
+"puts LaTeX formula delimiters \[ and \] around the region, if
+region there is. Otherwise, inserts \[ and \], an empty line
+inbetween, and a stop-point."
   (interactive)
   (region-insert-stop "\\[
 
@@ -103,12 +105,10 @@ Sinon, insere \[ et \], une ligne vide dedans,
   (insert "\\"))
 
 (global-set-key stop-key 'go-next-stop-point)
-;(global-set-key [²] 'go-next-stop-point)
-;(global-set-key [S-f11] 'stop-parentheses)
-(global-set-key [f11] 'stop-parentheses)
-(global-set-key [f10] 'stop-accolades)
+(global-set-key [f11] 'stop-parenthesis)
+(global-set-key [f10] 'stop-braces)
 (global-set-key [f9] 'stop-dollars)
-(global-set-key [f8] 'stop-tex-accolades)
+(global-set-key [f8] 'stop-tex-braces)
 (global-set-key [f7] 'stop-tex-mathline)
 
 (global-set-key [f12] 'mybackslash)
