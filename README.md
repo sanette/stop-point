@@ -18,11 +18,11 @@ _stop-point_ outside the $$, and the _stop-point_ is deleted.
 * if you hit the same key while a region is selected, this does the
   natural thing, ie. it places $'s around the selection.
 
-* Of course it works also for (), {}, \[ \], or for several arguments,
+* Of course it also works for (), {}, \[ \], or for several arguments,
   like \frac{}{}, etc.
 
-* Of course you may use (much) more sophisticaded modes like
-_yasnippet_, but the _stop-mode_ method is super light weight and
+* Of course you may use (much) more sophisticated modes like
+_yasnippet_, but the _stop-point_ method is super light weight and
 enough for many cases.  I've been using this for so many years... this
 is really handy.
 
@@ -36,4 +36,4 @@ is really handy.
 (load "/path/to/stop.el")
 ```
 
-* by default the stop-point will be colorized only in latex-mode. You may change this directly in the source code.
+* by default the stop-point will be colorized only in latex-mode.
