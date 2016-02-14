@@ -83,7 +83,7 @@ Otherwise, insert a pair of curly braces and a stop-point."
   )
 
 (defun stop-tex-braces ()
-"puts TeX xurly braces around the region, if region there
+"puts TeX curly braces around the region, if region there
 is. Otherwise, inserts a pair of TeX curly braces \{ and \}, and
 a stop-point."
   (interactive)
