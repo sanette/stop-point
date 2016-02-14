@@ -1,6 +1,9 @@
 ;; STOP method for emacs
 ;; Vu Ngoc San (c) 1999-2016
 
+;; TODO : make a minor mode
+;; http://nullprogram.com/blog/2013/02/06/
+
 (transient-mark-mode t)
 
 ; TODO use defcustom
@@ -60,6 +63,10 @@ region is copied)"
     (insert-stop s n))
   )
 
+;;
+;; that's it for the "library". Below are various usages.
+;;
+
 (defun stop-parenthesis ()
 "puts parenthesis around the region, if region there
 is. Otherwise, inserts a pair of parenthesis, nothing inside, and
@@ -68,19 +75,22 @@ a stop-point."
   (region-insert-stop "()" 1)
   )
 
-(defun stop-dollars ()
-"puts dollar signs around the region, if region there
-is. Otherwise, inserts two dollar signs and a stop-point"
-  (interactive)
-  (region-insert-stop "$$" 1)
-  )
-
 (defun stop-braces ()
 "puts curly braces around the region, if region there is.
 Otherwise, insert a pair of curly braces and a stop-point."
   (interactive)
   (region-insert-stop "{}" 1)
   )
+
+
+(global-set-key stop-key 'go-next-stop-point)
+(global-set-key [f11] 'stop-parenthesis)
+(global-set-key [f10] 'stop-braces)
+
+
+;;
+;; LaTeX specific bindings
+;;
 
 (defun stop-tex-braces ()
 "puts TeX curly braces around the region, if region there
@@ -101,15 +111,42 @@ inbetween, and a stop-point."
 " 4)
   )
 
+(defun stop-frac ()
+  "inserts LaTeX \frac command. If a region is selected, the
+region is inserted into the first argument of \frac"
+  (interactive)
+  (if mark-active
+      (progn
+	(region-insert-stop "\\frac{}" 1)
+	(insert-stop "{}" 1))
+    (progn
+      (insert "\\frac{")
+      (let ((ici (point)))
+	(insert (concat "}{" stop-point "}" stop-point))  
+	(goto-char ici)
+	)
+      )
+    )
+  )
+
 (defun mybackslash ()
   (interactive)
   (insert "\\"))
 
-(global-set-key stop-key 'go-next-stop-point)
-(global-set-key [f11] 'stop-parenthesis)
-(global-set-key [f10] 'stop-braces)
-(global-set-key [f9] 'stop-dollars)
-(global-set-key [f8] 'stop-tex-braces)
-(global-set-key [f7] 'stop-tex-mathline)
+(defun stop-dollars ()
+"puts dollar signs around the region, if region there
+is. Otherwise, inserts two dollar signs and a stop-point"
+  (interactive)
+  (region-insert-stop "$$" 1)
+  )
 
-(global-set-key [f12] 'mybackslash)
+(defun stop-latex-init ()
+  "Specific bindings for LaTeX-mode"
+  (local-set-key (kbd "C-ù") 'stop-frac)
+  (local-set-key [f9] 'stop-dollars)
+  (local-set-key [f8] 'stop-tex-braces)
+  (local-set-key [f7] 'stop-tex-mathline)
+  (local-set-key [f12] 'mybackslash)
+  )
+
+(add-hook 'LaTeX-mode-hook 'stop-latex-init)
