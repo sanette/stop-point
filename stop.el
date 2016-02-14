@@ -97,7 +97,8 @@ inbetween, and a stop-point."
   (interactive)
   (region-insert-stop "\\[
 
-\\]" 3)
+\\]
+" 4)
   )
 
 (defun mybackslash ()
