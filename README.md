@@ -7,7 +7,7 @@ type many parenthesis (), {} etc.  or for LaTeX $$-like constructions.
 
 The principle is the following:
 
-* any string can be defined a a _stop-point_. Default is "◀◀"
+* any string can be defined as a _stop-point_. Default is "◀◀"
 
 * when you want to use a $$ construction, bind the key of your choice,
 and when you hit it, it inserts "$$◀◀" and the cursor is automatically
