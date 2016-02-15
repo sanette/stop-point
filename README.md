@@ -1,6 +1,6 @@
 # stop-point
 
-emacs library for the _stop-point_ method. Useful when you have to
+emacs minor-mode for the _stop-point_ method. Useful when you have to
 type many parenthesis (), {} etc.  or for LaTeX $$-like constructions.
 
 ## Overview
@@ -28,12 +28,12 @@ is really handy.
 
 ## Usage
 
-* save *stop.el* anywhere you want
+* save *stop-mode.el* anywhere you want
 
 * insert in your .emacs file:
 
 ```elisp
-(load "/path/to/stop.el")
+(load "/path/to/stop-mode.el")
 ```
 
 * by default the stop-point will be colorized only in latex-mode.
