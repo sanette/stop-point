@@ -1,7 +1,7 @@
 ;; STOP method for emacs
 ;; Vu Ngoc San (c) 1999-2016
 
-;; TODO : make a minor mode
+;; DEPRECATED: use stop-mode.el instead
 ;; http://nullprogram.com/blog/2013/02/06/
 
 (transient-mark-mode t)

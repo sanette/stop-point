@@ -35,5 +35,3 @@ is really handy.
 ```elisp
 (load "/path/to/stop-mode.el")
 ```
-
-* by default the stop-point will be colorized only in latex-mode.
