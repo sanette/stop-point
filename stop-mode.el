@@ -154,6 +154,7 @@ major-mode"
 	(define-key stop-mode-map [f7] 'stop-tex-mathline)
 	(define-key stop-mode-map [f12] 'mybackslash)
 	(define-key stop-mode-map  (kbd "C-ù") 'stop-frac)
+	(define-key stop-mode-map  (kbd (concat LaTeX-math-abbrev-prefix " <f10>")) 'stop-frac) ; TODO change this to enter only {}{}
 	)
     )
   )
@@ -179,6 +180,8 @@ major-mode"
 (add-hook 'LaTeX-mode-hook 'stop-mode)
 ;;;###autoload
 (add-hook 'emacs-lisp-mode-hook 'stop-mode)
+;;;###autoload
+(add-hook 'tuareg-mode 'stop-mode)
 ;(add-hook 'LaTeX-mode-hook 'stop-latex-init)
 
 (provide 'stop-mode)
