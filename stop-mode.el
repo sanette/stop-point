@@ -181,7 +181,7 @@ major-mode"
 ;;;###autoload
 (add-hook 'emacs-lisp-mode-hook 'stop-mode)
 ;;;###autoload
-(add-hook 'tuareg-mode 'stop-mode)
+(add-hook 'tuareg-mode-hook 'stop-mode)
 ;(add-hook 'LaTeX-mode-hook 'stop-latex-init)
 
 (provide 'stop-mode)
