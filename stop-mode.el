@@ -145,8 +145,10 @@ is. Otherwise, inserts two dollar signs and a stop-point"
   )
 
 (defun stop-update-keymap (mode)
-"Using this we can change the bindings according to the
+  "Using this we can change the bindings according to the
 major-mode"
+  (font-lock-add-keywords mode
+			  (list (cons stop-point font-lock-warning-face)))
   (if (eq mode `latex-mode)
       (progn
 	(define-key stop-mode-map [f9] 'stop-dollars)
