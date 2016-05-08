@@ -151,7 +151,8 @@ major-mode"
 			  (list (cons stop-point font-lock-warning-face)))
   (if (eq mode `latex-mode)
       (progn
-	(setq stop-point "%\u25C0\u25C0")
+	(setq stop-point "%\u25C0\u25C0
+")
 	(define-key stop-mode-map [f9] 'stop-dollars)
 	(define-key stop-mode-map [f8] 'stop-tex-braces)
 	(define-key stop-mode-map [f7] 'stop-tex-mathline)
