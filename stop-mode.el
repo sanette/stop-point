@@ -38,7 +38,7 @@ next mark is reached and erased by calling the function
 
 (defun go-next-stop-point ()
   "jumps to the next STOP point (defined by stop-point) and
-delete it. If not found,we invoke the old keybinding"
+delete it. If not found, we invoke the old keybinding"
   (interactive)
   (if
       (re-search-forward
